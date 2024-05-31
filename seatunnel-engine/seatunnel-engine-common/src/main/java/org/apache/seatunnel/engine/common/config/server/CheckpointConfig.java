@@ -21,10 +21,9 @@ import lombok.Data;
 
 import java.io.Serializable;
 
-import static com.google.common.base.Preconditions.checkArgument;
+import static org.apache.seatunnel.shade.com.google.common.base.Preconditions.checkArgument;
 
 @Data
-@SuppressWarnings("checkstyle:MagicNumber")
 public class CheckpointConfig implements Serializable {
 
     public static final long MINIMAL_CHECKPOINT_TIME = 10;
@@ -35,6 +34,8 @@ public class CheckpointConfig implements Serializable {
             ServerConfigOptions.SCHEMA_CHANGE_CHECKPOINT_TIMEOUT.defaultValue();
 
     private CheckpointStorageConfig storage = ServerConfigOptions.CHECKPOINT_STORAGE.defaultValue();
+
+    private boolean checkpointEnable = true;
 
     public void setCheckpointInterval(long checkpointInterval) {
         checkArgument(
